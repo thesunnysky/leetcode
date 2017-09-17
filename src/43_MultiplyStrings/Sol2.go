@@ -6,7 +6,7 @@ import (
 )
 
 func multiply2(num1 string, num2 string) string {
-	product := make([]int, len(num1)*len(num2)+2)
+	product := make([]int, len(num1)+len(num2)+1)
 
 	for k := len(num1) - 1; k >= 0; k-- {
 		for m := len(num2) - 1; m >= 0; m-- {
