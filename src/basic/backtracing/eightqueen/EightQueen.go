@@ -72,7 +72,7 @@ func isDiaOk(a [][]int, row int, col int) bool {
 		i--
 		j--
 	}
-	for i, j := row-1, col-1; i >= 0 && j >= 0 && j < len(a); {
+	for i, j := row-1, col+1; i >= 0 && j >= 0 && j < len(a); {
 		if a[i][j] != 0 {
 			return false
 		}
