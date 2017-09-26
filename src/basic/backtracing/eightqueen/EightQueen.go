@@ -4,11 +4,11 @@ import (
 	"fmt"
 )
 
-var all = 0
-
-func eightQueen(dimension int) {
-	chess := genChess(dimension)
-	place(chess, 0)
+func eightQueen(n int) int {
+	all := 0
+	chess := genChess(n)
+	place(chess, 0, &all)
+	return all
 }
 
 func genChess(dimension int) [][]int {
@@ -19,7 +19,7 @@ func genChess(dimension int) [][]int {
 	return chess
 }
 
-func place(a [][]int, row int) {
+func place(a [][]int, row int, all *int) {
 	//fmt.Println("finding row", row, "...")
 	if row == len(a)-1 {
 		rowData := findCol(a, row)
@@ -27,7 +27,8 @@ func place(a [][]int, row int) {
 			//set col data and print
 			if rowData[i] != 0 {
 				a[row][i] = rowData[i]
-				print(a)
+				*all++
+				//print(a)
 				//reset the row data
 				a[row][i] = 0
 			}
@@ -38,7 +39,7 @@ func place(a [][]int, row int) {
 		for i := 0; i < len(rowData); i++ {
 			if rowData[i] != 0 {
 				a[row][i] = rowData[i]
-				place(a, row+1)
+				place(a, row+1, all)
 				a[row][i] = 0
 			}
 		}
@@ -82,8 +83,12 @@ func isDiaOk(a [][]int, row int, col int) bool {
 	return true
 }
 
+func genResult([][]int) []string {
+	return nil
+}
+
 func print(a [][]int) {
-	fmt.Println("=======================", all)
+	fmt.Println("=======================", )
 	/*	for row := range a {
 			fmt.Println(row)
 		}*/
@@ -91,5 +96,4 @@ func print(a [][]int) {
 		fmt.Println(a[i])
 	}
 	fmt.Println("========================")
-	all++
 }
